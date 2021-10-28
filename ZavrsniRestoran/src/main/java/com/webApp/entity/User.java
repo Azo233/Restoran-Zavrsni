@@ -51,7 +51,6 @@ public class User {
 	}
 	
 	public User(String firstName, String lastName, String email, String password, Collection<Role> roles, String address) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -61,7 +60,7 @@ public class User {
 	}
 
     public User(String firstName, String lastName, String email, String encode, List<Role> asList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+ 
     }
 
         public Long getId_kupac() {
@@ -103,5 +102,15 @@ public class User {
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+        
+        
 
 }

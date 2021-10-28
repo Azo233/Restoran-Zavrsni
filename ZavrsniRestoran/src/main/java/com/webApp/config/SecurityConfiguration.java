@@ -19,24 +19,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserService userService;
 	
-	@Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+            @Bean
+        public BCryptPasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
+
+            @Bean
+        public DaoAuthenticationProvider authenticationProvider() {
+            DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+            auth.setUserDetailsService(userService);
+            auth.setPasswordEncoder(passwordEncoder());
+            return auth;
+        }
+
+            @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.authenticationProvider(authenticationProvider());
+        }
 	
-	@Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(userService);
-        auth.setPasswordEncoder(passwordEncoder());
-        return auth;
-    }
-	
-	@Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
-    }
-	
+   
+    
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers(
@@ -46,8 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	                "/img/**",
                         "/home/**",
                         "/jelovnik/**",
-                        "/narudzba/**",
-                        "/login/**").permitAll()
+                        "/narudzba/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()     
@@ -60,6 +61,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.logoutSuccessUrl("/login?logout")
 		.permitAll();
+                 http.formLogin().defaultSuccessUrl("/home", true);
+                
 	}
+        
+         @Autowired
+        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService);
+    }
+        
+         
 
 }

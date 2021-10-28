@@ -32,6 +32,9 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "narudzba";
 	}
+        
+      
+        
 
     @PostMapping("/kupci")
     public String saveStudent(@ModelAttribute("user") User user) {

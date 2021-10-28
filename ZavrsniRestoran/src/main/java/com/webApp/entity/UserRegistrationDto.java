@@ -29,7 +29,6 @@ public class UserRegistrationDto {
             this.address = address;
         }
 	
-        
 	public String getFirstName() {
 		return firstName;
 	}

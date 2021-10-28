@@ -2,6 +2,7 @@ package com.webApp.controller;
 
 import com.webApp.entity.UserRegistrationDto;
 import com.webApp.service.UserService;
+import java.util.jar.Attributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,11 @@ public class UserRegistrationController {
 	
 	@PostMapping
 	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
-		userService.save(registrationDto);
+                
+		 var user =  userService.save(registrationDto); 
+                 if(user == null){
+                     return "registration";
+                 }
 		return "redirect:/jelovnik";
 	}
 }

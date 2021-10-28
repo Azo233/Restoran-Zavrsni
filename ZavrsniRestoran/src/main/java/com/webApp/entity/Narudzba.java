@@ -19,12 +19,17 @@ public class Narudzba {
     private User user;
     @ManyToOne
     private Jelo jelo;
+    
+    private int quantitiy;
 
-    public Narudzba(Long id_narudzba, User user, Jelo jelo) {
+    public Narudzba(Long id_narudzba, User user, Jelo jelo, int quantitiy) {
         this.id_narudzba = id_narudzba;
         this.user = user;
         this.jelo = jelo;
+        this.quantitiy = quantitiy;
     }
+
+    
     
    
 
@@ -56,6 +61,16 @@ public class Narudzba {
     public void setJelo(Jelo jelo) {
         this.jelo = jelo;
     }
+
+    public int getQuantitiy() {
+        return quantitiy;
+    }
+
+    public void setQuantitiy(int quantitiy) {
+        this.quantitiy = quantitiy;
+    }
+    
+    
 
 
 

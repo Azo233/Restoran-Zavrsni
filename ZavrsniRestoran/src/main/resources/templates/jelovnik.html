@@ -21,9 +21,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="narudzba">Narudžba</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html">Login</a>
+                       <li class="nav-item">
+                             <a class="nav-link" sec:authentication="principal.username"</a>
                         </li>
+                        <li sec:authorize="isAuthenticated()"><a class="nav-item" th:href="@{/logout}"> Logout </a></li>
+                    </ul>
                     </ul>
                 </div>
             </div>
@@ -38,9 +40,10 @@
                                     <tr>
                                       <th scope="col">Ime</th>
                                       <th scope="col">Cijena</th>
+                                      <th scope="col">Odabir</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody>    
                                         <tr>
                                             <tr th:each="jelo: ${jela}">
                                             <td th:text="${jelo.ime}" />

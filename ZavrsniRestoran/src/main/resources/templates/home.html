@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <meta charset="UTF-8">
         <title>Restoran</title>
@@ -23,8 +24,9 @@
                             <a class="nav-link" href="narudzba">Narudžba</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login">Login</a>
+                             <a class="nav-link" sec:authentication="principal.username"</a>
                         </li>
+                        <li sec:authorize="isAuthenticated()"><a class="nav-item" th:href="@{/logout}"> Logout </a></li>
                     </ul>
                 </div>
             </div>
