@@ -1,28 +1,24 @@
 package com.webApp.controller;
 
-import java.util.List;
-import java.util.Optional;
 
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.webApp.entity.Jelo;
-import com.webApp.repository.JeloRepository;
+
 import com.webApp.service.JeloService;
-import org.springframework.web.bind.annotation.RestController;
+import com.webApp.service.NarudzbaService;
+
 
 @Controller
 public class JelovnikController {
 	
 	private JeloService jeloService;
+        private NarudzbaService narudzbaService;
 
     
 	
@@ -44,16 +40,10 @@ public JelovnikController(JeloService jeloService) {
             model.addAttribute("jela", jeloService.getAllJelo());
             return "jelovnik";
     }
-   
-    @RequestMapping(value = "/narudzba")
-       public String openNarudzba(){
-       return "narudzba";
-   }
-       
- 
-	
     
+    
+   
 
+}
+       
 
-
-	}

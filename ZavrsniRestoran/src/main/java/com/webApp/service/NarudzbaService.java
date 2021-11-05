@@ -16,5 +16,7 @@ public interface NarudzbaService {
     
     List<Narudzba> getAllNarudzba();
     Narudzba saveNarudzba(Narudzba narudzba);
+    List<Narudzba> checkForMeal();
+    
     
 }

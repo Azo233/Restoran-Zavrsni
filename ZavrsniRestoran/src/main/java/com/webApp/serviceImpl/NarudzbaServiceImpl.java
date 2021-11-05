@@ -30,7 +30,15 @@ public class NarudzbaServiceImpl implements NarudzbaService{
     @Override
     public Narudzba saveNarudzba(Narudzba narudzba) {
         return narudzbaRepository.save(narudzba);
+        
     }
+
+    @Override
+    public List<Narudzba> checkForMeal() {
+        return narudzbaRepository.findAll();   
+    }
+    
+    
     
     
     

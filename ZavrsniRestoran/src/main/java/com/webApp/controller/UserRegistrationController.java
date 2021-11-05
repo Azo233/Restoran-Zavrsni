@@ -40,6 +40,6 @@ public class UserRegistrationController {
                  if(user == null){
                      return "registration";
                  }
-		return "redirect:/jelovnik";
+		return "redirect:/login";
 	}
 }

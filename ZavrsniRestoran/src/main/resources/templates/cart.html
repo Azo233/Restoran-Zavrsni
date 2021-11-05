@@ -30,36 +30,37 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
-            <div class="jumbotron">
 
-                <div class="card">
+
+        
+         <div class="card" th:if="${session.shoppingCart.items!=null}">
                     <div class="card-body">
-                            <table class="table table-dark table-striped table table-hover table-bordered">
+                            <table  class="table table-dark table-striped table table-hover table-bordered">
                                     <thead>
                                     <tr>
                                       <th scope="col">Ime</th>
                                       <th scope="col">Cijena</th>
-                                      <th scope="col">Odabir</th>
                                     </tr>
                                     </thead>
                                     <tbody>    
                                         <tr>
-                                            <tr th:each="jelo: ${jela}">
-                                            <td th:text="${jelo.ime}" />
-                                            <td th:text="${jelo.cijena}" />
+                                            <tr th:each="item : ${session.shoppingCart.items}">
+                                            <td th:text="${item.jelo.ime}" />
+                                            <td th:text="${item.jelo.cijena}" />
                                             <td>
-                                                <form action="#" th:action="@{/cart/add}" method="POST">
-                                                <input type="hidden" th:value="${jelo.id_jelo}" name="id_jelo"/>
-                                                <button type="submit">Dodaj</button>
+                                            <form action="#" th:action="@{/cart/remove}" method="post">
+                                            <input type="hidden" th:value="${item.jelo.id_jelo}" name="id_jelo"/>
+                                            <button type="submit">remove</button>
                                             </form>
                                             </td>
                                           </tr>
-                                        </tbody>
+                                        </tbody>                                                
                                       </table>                                     
                     </div>
+                             <h4>Ukupno: <span th:text="${session.shoppingCart.total}"></span> kn.</h4>
                   </div>
-            </div>
-        </div>
-    </body>
+
+</body>
 </html>
+
+
